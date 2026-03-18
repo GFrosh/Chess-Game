@@ -1,6 +1,6 @@
 import { Board } from "../board/Board";
 import { Color } from "../pieces/Piece";
-import { Pawn } from "../pieces/Pawn";
+import { Pawn, PromotionPieceType } from "../pieces/Pawn";
 import { algebraicToPosition } from "../utils/square";
 import { Move } from "../move/Move";
 
@@ -35,7 +35,11 @@ export class Game {
 		}
 	}
 
-	move(fromSquare: string, toSquare: string) {
+	move(
+		fromSquare: string,
+		toSquare: string,
+		promoteTo: PromotionPieceType = "queen"
+	) {
 		const from = algebraicToPosition(fromSquare);
 		const to = algebraicToPosition(toSquare);
 
@@ -64,7 +68,19 @@ export class Game {
 		// execute move
 		this.board.movePiece(move.from, move.to);
 
-		this.moveHistory.push(`${fromSquare} -> ${toSquare}`);
+		const movedPiece = this.board.getPiece(move.to);
+
+		if (movedPiece instanceof Pawn && movedPiece.canPromote()) {
+			const promotedPiece = movedPiece.promote(promoteTo);
+			this.board.placePiece(promotedPiece);
+		}
+
+		const promotionSuffix =
+			movedPiece instanceof Pawn && movedPiece.canPromote()
+				? `=${promoteTo}`
+				: "";
+
+		this.moveHistory.push(`${fromSquare} -> ${toSquare}${promotionSuffix}`);
 
 		this.switchTurn();
 		}
