@@ -23,15 +23,15 @@ export class Game {
 	private setupPieces() {
 		// Pawns only (for now)
 
-		for (let col = 0; col < 8; col++) {
+		for (let col = 0; col < this.board.size; col++) {
 			// White pawns
 			this.board.placePiece(
-				new Pawn("white", { row: 6, col })
+				new Pawn("white", { row: 6, col: col })
 			);
 
 			// Black pawns
 			this.board.placePiece(
-				new Pawn("black", { row: 1, col })
+				new Pawn("black", { row: 1, col: col })
 			);
 		}
 	}
@@ -68,10 +68,9 @@ export class Game {
 
 		const movedPiece = this.board.getPiece(move.to);
 
-		
-		
+		this.moveHistory.push(`${this.currentPlayer} moved ${movedPiece?.type} from ${fromSquare} to ${toSquare}`);
 		this.switchTurn();
-		}
+	}
 
 	private switchTurn() {
 		this.currentPlayer = this.currentPlayer === "white" ? "black" : "white";
