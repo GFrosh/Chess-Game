@@ -52,6 +52,7 @@ export class Pawn extends Piece {
 		// ALSO CHECK THE BOARD HISTORY FOR THAT*/
 
 
+		// NEED TO DEFINE BEHAVIOUR FOR CAPTURES OR DEATHS...
 
 		// MOVES BEING AN ARRAY OF ALL LEGAL MOVES...
 		return moves;

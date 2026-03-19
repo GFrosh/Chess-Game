@@ -68,7 +68,7 @@ export class Game {
 
 		const movedPiece = this.board.getPiece(move.to);
 
-		this.moveHistory.push(`${this.currentPlayer} moved ${movedPiece?.type} from ${fromSquare} to ${toSquare}`);
+		this.moveHistory.push(`${fromSquare}->${toSquare}`);
 		this.switchTurn();
 	}
 
