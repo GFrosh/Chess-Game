@@ -1,14 +1,12 @@
 import { Board } from "../board/Board";
 import { Position } from "./Piece";
 
-/**
- * Reusable movement patterns for different piece types
- */
+
+// Reusable movement patterns for different piece types
 export class MovementPatterns {
-	/**
-	 * Get all positions a piece can move to in a straight line (rook-like)
-	 * Stops at first piece or board edge
-	 */
+	
+	// Get all positions a piece can move to in a straight line (rook-like)
+	// Stops at first piece or board edge
 	static getStraightLineMoves(
 		board: Board,
 		from: Position,
@@ -16,7 +14,7 @@ export class MovementPatterns {
 	): Position[] {
 		const moves: Position[] = [];
 
-		for (const [deltaRow, deltaCol] of directions) {
+		for (const [ deltaRow, deltaCol ] of directions) {
 			let row = from.row + deltaRow;
 			let col = from.col + deltaCol;
 
@@ -38,9 +36,8 @@ export class MovementPatterns {
 		return moves;
 	}
 
-	/**
-	 * Get all positions a piece can jump to (knight-like)
-	 */
+	
+	// Get all positions a piece can jump to (knight-like)
 	static getJumpingMoves(
 		board: Board,
 		from: Position,
@@ -48,7 +45,7 @@ export class MovementPatterns {
 	): Position[] {
 		const moves: Position[] = [];
 
-		for (const [deltaRow, deltaCol] of jumps) {
+		for (const [ deltaRow, deltaCol ] of jumps) {
 			const target = { row: from.row + deltaRow, col: from.col + deltaCol };
 
 			if (board.isWithinBounds(target)) {
@@ -59,9 +56,8 @@ export class MovementPatterns {
 		return moves;
 	}
 
-	/**
-	 * Get all single-step moves in given directions (king-like)
-	 */
+	
+	// Get all single-step moves in given directions (king-like)
 	static getSingleStepMoves(
 		board: Board,
 		from: Position,
@@ -69,7 +65,7 @@ export class MovementPatterns {
 	): Position[] {
 		const moves: Position[] = [];
 
-		for (const [deltaRow, deltaCol] of directions) {
+		for (const [ deltaRow, deltaCol ] of directions) {
 			const target = { row: from.row + deltaRow, col: from.col + deltaCol };
 
 			if (board.isWithinBounds(target)) {
