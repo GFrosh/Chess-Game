@@ -3,6 +3,8 @@ import { Color, Position } from "../pieces/Piece";
 import { Pawn } from "../pieces/Pawn";
 import { algebraicToPosition } from "../utils/square";
 import { Move } from "../move/Move";
+import { MoveValidator } from "../move/MoveValidator";
+import { MoveService } from "../move/MoveService";
 
 export class Game {
 	board: Board;
@@ -43,33 +45,14 @@ export class Game {
 		const to = algebraicToPosition(toSquare);
 
 		const move = new Move(from, to);
-		const piece = this.board.getPiece(move.from);
 
-		if (!piece) {
-			throw new Error("No piece at source square");
-		}
+		// Validate the move (source piece, turn, legality)
+		MoveValidator.validateMove(this.board, move, this.currentPlayer);
 
-		if (piece.color !== this.currentPlayer) {
-			throw new Error("Not your turn");
-		}
+		// Execute the move atomically
+		MoveService.executeMove(this.board, move);
 
-		const legalMoves = piece.getLegalMoves(this.board);
-
-		const isLegal = legalMoves.some((pos: Position) => {
-			return pos.row === move.to.row && pos.col === move.to.col
-		});
-
-		if (!isLegal) {
-			throw new Error("Illegal move");
-		}
-
-		// UPDATE BOARD STATS AND PIECE POSITION
-		this.board.movePiece(move.from, move.to);
-		const movedPiece = this.board.getPiece(move.to);
-		movedPiece?.moveTo(move.to);
-		
-
-		// LOGGING THE MOVE IN HISTORY AND SWITCHING TURNS
+		// Log and switch turns
 		this.moveHistory.push(`${fromSquare}->${toSquare}`);
 		this.switchTurn();
 	}

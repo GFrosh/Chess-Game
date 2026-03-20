@@ -27,7 +27,7 @@ export class Pawn extends Piece {
 
 			// MAKING SURE PAWN IS ON STARTING ROW FOR A TWO-STEP MOVE
 			const startingRow: number = this.color === "white" ? 6 : 1;
-			if (row === startingRow) {
+			if (this.position.row === startingRow) {
 				if (board.isWithinBounds(twoStep) && !board.getPiece(twoStep)) moves.push(twoStep);
 			}
 		}

@@ -22,3 +22,6 @@ export function positionToAlgebraic(position: Position): string {
 
 	return `${file}${rank}`;
 }
+
+// Re-export position utilities
+export * from "./positionUtils";

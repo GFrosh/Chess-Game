@@ -78,7 +78,5 @@ export class Board {
 
 		this.setSquare(to.row, to.col, piece);
 		this.setSquare(from.row, from.col, null);
-
-		piece.moveTo(to);
 	}
 }
