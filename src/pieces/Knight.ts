@@ -17,32 +17,35 @@ export class Knight extends Piece {
             row: row + 1 * direction,
             col: col - 2
         } // 22.5 degrees...
-        // ONLY JUMP ONE IS ACCURATE FOR NOW!!!
         const LJumpTwo: Position = {
-            row: row - 1 * direction,
-            col: col + 2
+            row: row + 2 * direction,
+            col: col - 1
         } // 67.5 degrees...
         const LJumpThree: Position = {
-            row: row + 1 * direction,
-            col: + 2
+            row: row + 2 * direction,
+            col: col + 1
         } // 112.5 degrees...
         const LJumpFour: Position = {
-            row: row + 2 * direction,
-            col: + 1
+            row: row + 1 * direction,
+            col: col + 2
         } // 135 degrees...
         const LJumpFive: Position = {
-            row: row + 2 * direction,
-            col: - 1
+            row: row - 1 * direction,
+            col: col + 2
         } // 157.5 degrees...
         const LJumpSix: Position = {
-            row: row + 1 * direction,
-            col: - 2
+            row: row - 2 * direction,
+            col: col - 1
         } // 180 degrees...
-        const LJumpSeven: Position = { row: (row - 2) * direction, col: + 1 } // 22.5 degrees...
-        const LJumpEight: Position = { row: (row - 2) * direction, col: + 1 } // 22.5 degrees...
+        const LJumpSeven: Position = {
+            row: row - 2 * direction,
+            col: col - 1
+        } // 202.5 degrees...
+        const LJumpEight: Position = {
+            row: row - 1 * direction,
+            col: col - 2
+        } // 247.5 degrees...
         
-
-
 
         return moves;
     }
