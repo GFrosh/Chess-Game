@@ -10,6 +10,7 @@ export class Piece {
 	type: PieceType;
 	color: Color;
 	position: Position;
+	isCaptured: boolean = false;
 
 	constructor(type: PieceType, color: Color, position: Position) {
 		this.type = type;

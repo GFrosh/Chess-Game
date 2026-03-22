@@ -17,7 +17,7 @@ export class Pawn extends Piece {
 
 		// POSSIBLE PAWN MOVES
 		const oneStep: Position = { row: row + direction, col }; // FOR A STEP FORWARD
-		const twoStep: Position = { row: row + 2 * direction, col } //FOR TWO STEPS FORWARD FROM STARTING POINT
+		const twoStep: Position = { row: row + 2 * direction, col } // FOR TWO STEPS FORWARD FROM STARTING POINT
 		const captureLeft: Position = { row: row + direction, col: col - 1} // FOR A CAPTURE ON THE LEFT
 		const captureRight: Position = { row: row + direction, col: col + 1} // YOU SHOULD KNOW...
 

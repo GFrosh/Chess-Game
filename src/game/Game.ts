@@ -5,6 +5,7 @@ import { algebraicToPosition } from "../utils/square";
 import { Move } from "../move/Move";
 import { MoveValidator } from "../move/MoveValidator";
 import { MoveService } from "../move/MoveService";
+import { Knight } from "../pieces/Knight";
 
 export class Game {
 	board: Board;
@@ -22,8 +23,7 @@ export class Game {
 	}
 
 	private setupPieces() {
-		// Pawns only (for now)
-
+		// Pawns pieces first
 		for (let col = 0; col < this.board.size; col++) {
 			// White pawns
 			this.board.placePiece(
@@ -35,12 +35,25 @@ export class Game {
 				new Pawn("black", { row: 1, col: col })
 			);
 		}
+		// KNIGHT PIECES NEXT
+		// For White
+		this.board.placePiece(
+			new Knight("white", { row: 7, col: 1 })
+		);
+		this.board.placePiece(
+			new Knight("white", { row: 7, col: 6 })
+		);
+
+		// For Black
+		this.board.placePiece(
+			new Knight("black", { row: 0, col: 1 })
+		);
+		this.board.placePiece(
+			new Knight("black", { row: 0, col: 6 })
+		);
 	}
 
-	move(
-		fromSquare: string,
-		toSquare: string
-	) {
+	move(fromSquare: string, toSquare: string) {
 		const from = algebraicToPosition(fromSquare);
 		const to = algebraicToPosition(toSquare);
 
