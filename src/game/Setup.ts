@@ -2,6 +2,7 @@ import { Board } from "../board/Board";
 import { Knight } from "../pieces/Knight";
 import { Pawn } from "../pieces/Pawn";
 import { Rook } from "../pieces/Rook";
+import { Bishop } from "../pieces/Bishop";
 
 export class Setup {
     static pawns(board: Board) {
@@ -50,6 +51,24 @@ export class Setup {
         );
         board.placePiece(
             new Rook("black", { row: 0, col: 7 })
+        );
+    }
+
+    static bishops(board: Board) {
+        // WHITE BISHOPS
+        board.placePiece(
+            new Bishop("white", { row: 7, col: 2 })
+        );
+        board.placePiece(
+            new Bishop("white", { row: 7, col: 5 })
+        );
+
+        // BLACK BISHOPS
+        board.placePiece(
+            new Bishop("black", { row: 0, col: 2 })
+        );
+        board.placePiece(
+            new Bishop("black", { row: 0, col: 5 })
         );
     }
 }
