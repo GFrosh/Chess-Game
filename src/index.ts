@@ -4,10 +4,10 @@ const game = new Game();
 
 game.start();
 game.move("e2", "e4");
-game.move("d7", "d5");
-game.move("d1", "g4");
-game.move("c8", "g4");
-game.move("e1", "e2");
+game.move("e7", "e5");
+game.move("g1", "f3");
+game.move("b8", "c6");
+game.move("f1", "c4");
 
 console.log("Game History: ");
 console.log(game.moveHistory);

@@ -11,6 +11,7 @@ export class Piece {
 	color: Color;
 	position: Position;
 	isCaptured: boolean = false;
+	hasMoved: boolean = false;
 
 	constructor(type: PieceType, color: Color, position: Position) {
 		this.type = type;
@@ -20,10 +21,11 @@ export class Piece {
 
 	moveTo(position: Position) {
 		this.position = position;
+		this.hasMoved = true;
 	}
 
 	updateStatus() {
-		this.isCaptured = false;
+		this.isCaptured = true;
 		this.position = this.color === "white" ? { row: -9, col: 9 } : { row: 9, col: 9 };
 	}
 

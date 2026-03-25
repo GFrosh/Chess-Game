@@ -13,6 +13,11 @@ The engine includes:
 - move validation (`MoveValidator`)
 - move execution/undo (`MoveService`)
 - turn flow and history (`Game`)
+- check/checkmate/stalemate evaluation
+- special rules:
+  - castling
+  - en passant
+  - promotion
 - legal move generation for all standard pieces:
   - pawn
   - rook
@@ -23,10 +28,7 @@ The engine includes:
 
 Not yet implemented:
 
-- check/checkmate
-- castling
-- en passant
-- promotion
+- advanced notation and import/export (PGN/FEN)
 
 ## Quick start
 
@@ -89,6 +91,8 @@ src/
     pieceType.ts
 
 tests/
+  game/
+    SpecialRules.test.ts
   pieces/
     Pawn.test.ts
     Bishop.test.ts
@@ -124,8 +128,11 @@ Calling `game.move("e2", "e4")` does this:
    - piece exists on source square
    - piece color matches `currentPlayer`
    - destination is in piece legal moves
+  - special rule constraints (castling, en passant, promotion flags)
+  - move does not leave the moving side's king in check
 4. `MoveService.executeMove(...)` updates squares and piece position.
 5. `Game` logs `e2->e4` and switches turns.
+6. `Game` evaluates check/checkmate/stalemate for the next player.
 
 ## Piece movement details
 
@@ -140,6 +147,8 @@ Calling `game.move("e2", "e4")` does this:
 
 Current tests focus on:
 
+- castling, en passant, promotion
+- check/checkmate/stalemate detection
 - pawn movement and capture behavior
 - bishop ray movement and blocking
 - rook and knight movement edge cases
@@ -156,10 +165,10 @@ Still worth adding:
 ## Good next tasks
 
 1. Add check detection and reject moves that expose your own king.
-2. Add promotion handling in `MoveService` and game flow.
-3. Add castling with validator checks and two-piece movement execution.
-4. Add en passant using last-move state.
-5. Add richer move notation (SAN/PGN-like) in history output.
+2. Add richer move notation (SAN/PGN-like) in history output.
+3. Add FEN import/export for position setup and persistence.
+4. Add draw rules beyond stalemate (fifty-move rule, threefold repetition).
+5. Add stronger `Game` state APIs (status snapshots, legal move listing).
 
 ## Common pitfalls
 

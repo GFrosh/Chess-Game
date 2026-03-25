@@ -19,10 +19,20 @@ Current implementation supports full piece movement rules for all standard piece
   - source square contains a piece
   - piece color matches current player
   - destination is in the piece's legal move list
+  - move cannot leave own king in check
 - Atomic move execution service (`MoveService`)
   - updates board squares
   - updates moved piece position
   - supports basic capture handling
+- Full special-move support
+  - castling
+  - en passant
+  - promotion (defaults to queen if omitted)
+- Game state checks
+  - check detection
+  - checkmate detection
+  - stalemate detection
+  - game end reason (`checkmate` or `stalemate`)
 - Algebraic square parsing and formatting (`algebraicToPosition`, `positionToAlgebraic`)
 - Move history logging in game flow (`from->to` string format)
 - Terminal-friendly ASCII board rendering (`Board.toAscii` / `Board.print`)
@@ -67,6 +77,8 @@ src/
     square.ts
 
 tests/
+  game/
+    SpecialRules.test.ts
   pieces/
     Bishop.test.ts
     Pawn.test.ts
@@ -130,10 +142,10 @@ const game = new Game();
 
 game.start();
 game.move("e2", "e4");
-game.move("d7", "d5");
-game.move("d1", "g4");
-game.move("c8", "g4");
-game.move("e1", "e2");
+game.move("e7", "e5");
+game.move("g1", "f3");
+game.move("b8", "c6");
+game.move("f1", "c4");
 
 console.log("Game History:");
 console.log(game.moveHistory);
@@ -144,10 +156,6 @@ game.board.print();
 
 ## Current Limitations
 
-- No check/checkmate validation yet
-- No castling
-- No en passant
-- No promotion flow
 - No FEN/PGN import-export
 - Move history is a simple `from->to` list (not full algebraic notation)
 
