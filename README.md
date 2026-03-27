@@ -1,6 +1,8 @@
 # Chess Engine (TypeScript)
 
 [![CI](https://github.com/GFrosh/Chess-Game/actions/workflows/ci.yml/badge.svg)](https://github.com/GFrosh/Chess-Game/actions/workflows/ci.yml)
+[![Languages](https://img.shields.io/github/languages/count/GFrosh/Chess-Engine)](https://github.com/GFrosh/Chess-Engine)
+
 
 A lightweight chess engine written in TypeScript with a clear separation between move validation and move execution.
 
