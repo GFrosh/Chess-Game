@@ -7,6 +7,10 @@ A lightweight chess engine written in TypeScript with a clear separation between
 
 Current implementation supports full piece movement rules for all standard piece types and a standard board setup.
 
+## AI Bot
+
+A minimax-based chess bot with alpha-beta pruning is included. See **[AI.md](AI.md)** for full documentation, including the evaluation function, search algorithm, API reference, and usage examples.
+
 ## Current Features
 
 - 8x8 board model with bounds-safe access (`Board`)
@@ -48,6 +52,8 @@ Current implementation supports full piece movement rules for all standard piece
 - `MoveService`: owns state mutation for execute/undo
 - `Board`: owns grid storage and square access
 - `Piece` subclasses: own movement generation for each piece type
+- `AI`: minimax search with alpha-beta pruning (`src/ai/AI.ts`)
+- `Evaluator`: static board scoring by material + piece-square tables (`src/ai/Evaluator.ts`)
 - `utils`: position and square conversion helpers
 
 ## Project Structure
@@ -55,6 +61,9 @@ Current implementation supports full piece movement rules for all standard piece
 ```text
 src/
   index.ts
+  ai/
+    AI.ts
+    Evaluator.ts
   board/
     Board.ts
   game/
@@ -80,6 +89,8 @@ src/
     square.ts
 
 tests/
+  ai/
+    AI.test.ts
   game/
     SpecialRules.test.ts
   pieces/
